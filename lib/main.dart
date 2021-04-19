@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:like_state_sync/domain/item/Item_repository.dart';
+
+import 'presentation/feature/items_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,61 +14,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  final ItemRepository _itemRepository = ItemRepository();
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ListView.separated(
-          itemBuilder: (context, index) {
-            var item = _itemRepository.items()[index];
-            return ListTile(
-              title: Text(item.name),
-              subtitle: Text(item.description),
-              trailing: IconButton(
-                icon: Icon(
-                  item.like ? Icons.star : Icons.star_border_outlined,
-                ),
-                onPressed: () {
-                  if (item.like) {
-                    _itemRepository.unlike(item.id);
-                  } else {
-                    _itemRepository.like(item.id);
-                  }
-                  setState(() {});
-                },
-              ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return const Divider();
-          },
-          itemCount: _itemRepository.items().length),
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => ItemsScreen(),
+      },
     );
   }
 }
