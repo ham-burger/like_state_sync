@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/feature/items_screen.dart';
+import 'presentation/feature/item/item_screen.dart';
+import 'presentation/feature/items/items_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => ItemsScreen(),
+        '/detail': (BuildContext context) => ItemScreen(),
       },
     );
   }

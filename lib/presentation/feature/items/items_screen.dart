@@ -36,6 +36,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   setState(() {});
                 },
               ),
+              onTap: () {
+                Navigator.pushNamed(context, '/detail', arguments: item.id);
+              },
             );
           },
           separatorBuilder: (context, index) {
