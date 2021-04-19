@@ -7,4 +7,12 @@ class ItemRepository {
   List<Item> items() {
     return _storage.items;
   }
+
+  void like(int id) {
+    _storage.changeLikeState(id, true);
+  }
+
+  void unlike(int id) {
+    _storage.changeLikeState(id, false);
+  }
 }

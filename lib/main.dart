@@ -49,6 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListTile(
               title: Text(item.name),
               subtitle: Text(item.description),
+              trailing: IconButton(
+                icon: Icon(
+                  item.like ? Icons.star : Icons.star_border_outlined,
+                ),
+                onPressed: () {
+                  if (item.like) {
+                    _itemRepository.unlike(item.id);
+                  } else {
+                    _itemRepository.like(item.id);
+                  }
+                  setState(() {});
+                },
+              ),
             );
           },
           separatorBuilder: (context, index) {
