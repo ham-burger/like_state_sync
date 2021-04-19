@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:like_state_sync/domain/item/Item_repository.dart';
-import 'package:like_state_sync/presentation/feature/component/item_like_button.dart';
+import 'package:like_state_sync/presentation/component/item_like_button.dart';
 
 class ItemScreen extends StatefulWidget {
   ItemScreen({Key key}) : super(key: key);
