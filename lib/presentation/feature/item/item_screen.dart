@@ -22,7 +22,7 @@ class _ItemScreenState extends State<ItemScreen> {
       appBar: AppBar(
         title: Text('detail screen'),
         actions: [
-          ItemLikeButton(_itemRepository, item, () {
+          ItemLikeButton(item, () {
             setState(() {});
           }),
         ],

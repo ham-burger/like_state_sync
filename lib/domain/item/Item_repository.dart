@@ -2,7 +2,11 @@ import 'package:like_state_sync/domain/item/item.dart';
 import 'package:like_state_sync/inflastructure/storage.dart';
 
 class ItemRepository {
-  final Storage _storage = Storage();
+  ItemRepository({
+    Storage storage,
+  }) : _storage = storage ?? Storage();
+
+  final Storage _storage;
 
   List<Item> items() {
     return Storage.items;

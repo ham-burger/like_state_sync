@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:like_state_sync/domain/item/Item_repository.dart';
+import 'package:like_state_sync/domain/item_like/item_like_event.dart';
+import 'package:like_state_sync/inflastructure/event_bus.dart';
 import 'package:like_state_sync/presentation/component/item_like_button.dart';
 
 class ItemsScreen extends StatefulWidget {
@@ -11,9 +13,15 @@ class ItemsScreen extends StatefulWidget {
 
 class _ItemsScreenState extends State<ItemsScreen> {
   final ItemRepository _itemRepository = ItemRepository();
+  List<ItemLikeEvent> itemLikeEvents = [];
 
   @override
   Widget build(BuildContext context) {
+    eventBus.on<ItemLikeEvent>().listen((event) {
+      // eventから対象itemIdを取得できるので
+      // ちゃんと実装すれば必要なデータのみ更新することも可能
+      setState(() {});
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text('items screen'),
@@ -24,7 +32,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return ListTile(
               title: Text(item.name),
               subtitle: Text(item.description),
-              trailing: ItemLikeButton(_itemRepository, item, () {
+              trailing: ItemLikeButton( item, () {
                 setState(() {});
               }),
               onTap: () {
