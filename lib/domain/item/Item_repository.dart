@@ -5,7 +5,11 @@ class ItemRepository {
   final Storage _storage = Storage();
 
   List<Item> items() {
-    return _storage.items;
+    return Storage.items;
+  }
+
+  Item item(int id) {
+    return Storage.items.firstWhere((element) => element.id == id);
   }
 
   void like(int id) {

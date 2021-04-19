@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:like_state_sync/domain/item/Item_repository.dart';
+import 'package:like_state_sync/presentation/feature/component/item_like_button.dart';
 
 class ItemsScreen extends StatefulWidget {
   ItemsScreen({Key key}) : super(key: key);
@@ -23,19 +24,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return ListTile(
               title: Text(item.name),
               subtitle: Text(item.description),
-              trailing: IconButton(
-                icon: Icon(
-                  item.like ? Icons.star : Icons.star_border_outlined,
-                ),
-                onPressed: () {
-                  if (item.like) {
-                    _itemRepository.unlike(item.id);
-                  } else {
-                    _itemRepository.like(item.id);
-                  }
-                  setState(() {});
-                },
-              ),
+              trailing: ItemLikeButton(_itemRepository, item, () {
+                setState(() {});
+              }),
               onTap: () {
                 Navigator.pushNamed(context, '/detail', arguments: item.id);
               },
