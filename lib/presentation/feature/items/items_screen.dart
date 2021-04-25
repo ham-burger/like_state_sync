@@ -16,12 +16,17 @@ class _ItemsScreenState extends State<ItemsScreen> {
   List<ItemLikeEvent> itemLikeEvents = [];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     eventBus.on<ItemLikeEvent>().listen((event) {
       // eventから対象itemIdを取得できるので
       // ちゃんと実装すれば必要なデータのみ更新することも可能
       setState(() {});
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('items screen'),
@@ -32,7 +37,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return ListTile(
               title: Text(item.name),
               subtitle: Text(item.description),
-              trailing: ItemLikeButton( item, () {
+              trailing: ItemLikeButton(item, () {
                 setState(() {});
               }),
               onTap: () {
